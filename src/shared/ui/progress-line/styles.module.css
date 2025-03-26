@@ -1,0 +1,51 @@
+.progressWrap {
+   position: relative;
+   width: 100%;
+   background-color: var(--neutral-main);
+   overflow: hidden;
+   border-radius: 30px;
+}
+
+:global(.dark) .progressWrap {
+   background-color: var(--secondary-light);
+}
+
+.progressInfo {
+   position: absolute;
+   top: 0;
+   left: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 5px;
+   width: 100%;
+   height: 100%;
+   color: var(--secondary-contrast-text);
+   font-weight: 500;
+   font-size: 16px;
+}
+
+:global(.dark) .progressInfo {
+   color: var(--secondary-contrast);
+}
+
+.progressLine {
+   height: 30px;
+   background-color: var(--secondary-super-light);
+   transition: width 0.15s linear;
+}
+
+@media screen and (max-width: 500px) {
+   .progressWrap {
+      margin-bottom: 15px;
+   }
+}
+
+@media screen and (max-width: 470px) {
+   .progressInfo {
+      font-size: 16px;
+   }
+   .progressLine {
+      height: 25px;
+   }
+}

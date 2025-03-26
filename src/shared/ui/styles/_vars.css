@@ -1,0 +1,28 @@
+:root {
+   --primary-main: #4131c3;
+   --primary-contrast: #fff;
+   --primary-contrast-text: #000;
+
+   --secondary-main: #34538a;
+   --secondary-light: #007fcc;
+   --secondary-super-light: #00a8ff;
+   --secondary-contrast: #fff;
+   --secondary-contrast-text: #000;
+
+   --neutral-main: #e7e7e7;
+}
+
+.dark {
+   --primary-main: #1c1c1c;
+   --primary-contrast: #fff;
+   --primary-contrast-text: #000;
+
+   --secondary-main: #262626;
+   --secondary-light: #363636;
+   --secondary-super-light: #575757;
+   --secondary-contrast: #fff;
+   --secondary-contrast-text: #000;
+
+   --neutral-main: #e7e7e7;
+   --neutral-light: #ebebeb;
+}

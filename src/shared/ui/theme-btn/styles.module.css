@@ -1,0 +1,28 @@
+.themeBtn {
+   position: relative;
+   z-index: 400;
+}
+
+.themeBtn svg {
+   width: 37px;
+   height: 37px;
+}
+
+.themeBtn{
+   display: flex;
+   align-items: center;
+   flex-direction: row-reverse;
+   gap: 10px;
+   padding: 5px 10px;
+   border-radius: 20px;
+}
+
+.themeBtn span{
+   display: inline;
+   font-size: 18px;
+   min-width: 125px;
+}
+
+:global(.dark) .themeBtn span{
+   color: var(--primary-contrast);
+}

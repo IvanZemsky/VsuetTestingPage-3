@@ -1,0 +1,10 @@
+.resultText {
+   margin-bottom: 25px;
+   font-size: 19px;
+}
+
+@media screen and (max-width: 515px) {
+   .resultText {
+      font-size: 15px;
+   }
+}

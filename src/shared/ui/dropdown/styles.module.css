@@ -1,0 +1,23 @@
+.wrap {
+   position: relative;
+   display: flex;
+   flex-direction: column;
+}
+
+.wrap.opened button svg {
+   transform: rotate(-180deg);
+}
+
+.wrap button {
+   justify-content: space-between;
+   width: 100%;
+   text-transform: inherit;
+   font: inherit;
+}
+
+.wrap button svg {
+   width: 14px;
+   height: auto;
+   stroke: var(--secondary-main);
+   transition: transform 0.15s linear;
+}

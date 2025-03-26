@@ -1,0 +1,22 @@
+.result {
+   border-radius: 45px;
+   background-color: var(--primary-contrast);
+}
+
+.resultNumber {
+   text-align: center;
+   font-size: 100px;
+   font-weight: 600;
+}
+
+.resultNumber span {
+   display: inline-block;
+   padding-right: 3px;
+   text-align: right;
+}
+
+@media screen and (max-width: 515px) {
+   .resultNumber {
+      font-size: 50px;
+   }
+}

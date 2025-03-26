@@ -1,0 +1,17 @@
+.app {
+   display: grid;
+   grid-template-rows: auto 1fr;
+   grid-template-columns: 100%;
+   min-height: 100vh;
+   color: var(--text);
+   background-color: var(--background);
+}
+
+:global(.dark).app {
+   background-color: #0d0d0d;
+}
+
+.wrapper {
+   padding-top: 25px;
+   padding-bottom: 25px;
+}
