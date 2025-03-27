@@ -6,4 +6,15 @@ if (!API_URL) {
    throw new Error("API_URL is not defined")
 }
 
-export const API = new ApiClient({ baseUrl: API_URL })
+const token = localStorage.getItem("token")
+
+export const API = new ApiClient({
+   baseUrl: API_URL,
+   interceptors: {
+      credentials: "include",
+      headers: {
+         "Content-Type": "application/json",
+         // Authorization: `Bearer ${token}`,
+      },
+   },
+})

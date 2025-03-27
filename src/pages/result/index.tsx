@@ -3,13 +3,15 @@ import { ResultCounter } from "@/features/test"
 import { getResultText } from "@/features/test/lib/get-result-text"
 import styles from "./styles.module.css"
 import { useParams } from "react-router"
-import { useQuery } from "@/shared/lib"
+import { useQuery } from "@tanstack/react-query"
+import { Loading } from "@/shared/ui"
 
 const Result = () => {
    const { testId } = useParams<{ testId: TestId }>()
 
    const fetchTestQuery = useQuery({
       queryFn: () => testsService.fetchTestById(testId!),
+      queryKey: [testId],
       enabled: !!testId,
    })
 
@@ -20,8 +22,8 @@ const Result = () => {
       return <p>Произошла ошибка</p>
    }
 
-   if (fetchTestQuery.isLoading || !fetchTestQuery.data) {
-      return <p>Загрузка...</p>
+   if (fetchTestQuery.isPending || !fetchTestQuery.data) {
+      return <Loading />
    }
 
    const result = localStorageScore[testId]

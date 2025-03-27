@@ -4,6 +4,8 @@ import styles from "./styles.module.css"
 import { SelectAnswer } from "../select-answer"
 import { ProgressLine } from "@/shared/ui"
 import { getMaxResultScore } from "../../lib/get-max-result-score"
+import { saveScoreToLS } from "../../lib/save-score-to-ls"
+import { useNavigate } from "react-router"
 
 type Props = {
    testId: TestId
@@ -11,6 +13,7 @@ type Props = {
 }
 
 export const Question = ({ testId, questions }: Props) => {
+   const navigate = useNavigate()
    const [questionId, setQuestionId] = useState(0)
    const { score, maxScore } = useTestContext()
 
@@ -22,6 +25,15 @@ export const Question = ({ testId, questions }: Props) => {
       score.current = 0
    }, [])
 
+   useEffect(() => {
+      console.log("questionId", questionId)
+      console.log("isEndQuestion", isEndQuestion)
+   }, [questionId])
+
+   if (!currentQuestion) {
+      return <div>Error: Could not load the question.</div>
+   }
+
    return (
       <section className={styles.question}>
          <h2 className={styles.questionTitle}>{currentQuestion.title}</h2>
@@ -30,7 +42,7 @@ export const Question = ({ testId, questions }: Props) => {
             testId={testId}
             isEndQuestion={isEndQuestion}
             answers={currentQuestion.answers}
-            setScene={setQuestionId}
+            setQuestion={setQuestionId}
          />
          <ProgressLine
             questionNumber={questions.indexOf(currentQuestion) + 1}

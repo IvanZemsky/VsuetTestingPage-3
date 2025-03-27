@@ -10,7 +10,7 @@ import clsx from "clsx"
 import { ThemeContext } from "@/shared/model/theme-context"
 import { TestContextProvider } from "@/entities/test"
 
-export const Layout = () => {
+export const MainLayout = () => {
    const { theme } = useContext(ThemeContext)
 
    return (

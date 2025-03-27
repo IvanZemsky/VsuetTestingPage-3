@@ -1,0 +1,13 @@
+.content{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.form{
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+   border-radius: 25px;
+   padding: 25px;
+}

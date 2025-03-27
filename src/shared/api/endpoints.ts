@@ -1,7 +1,9 @@
 export const API_ENDPOINTS = {
    Tests: "tests",
    Questions: "questions",
-   Departments: "departments",
-   Directions: "directions",
    Passes: "passes",
+   SignIn: "sign-in",
+   SignOut: "sign-out",
+   Auth: "auth",
+   GetSessionInfo: "session",
 }

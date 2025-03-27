@@ -1,19 +1,21 @@
 import { testsService } from "@/entities/test"
 import { Question } from "@/features/test/"
-import { useQuery } from "@/shared/lib"
 import styles from "./styles.module.css"
 import { useParams } from "react-router"
+import { useQuery } from "@tanstack/react-query"
+import { Loading } from "@/shared/ui"
 
 const Test = () => {
    const { testId } = useParams<{ testId: string }>()
 
    const { data, isLoading, isError } = useQuery({
       queryFn: () => testsService.fetchQuestionByTestId(testId!),
+      queryKey: [testId],
       enabled: !!testId,
    })
 
    if (isLoading) {
-      return <p>Загрузка...</p>
+      return <Loading />
    }
 
    if (!testId || isError || !data) {

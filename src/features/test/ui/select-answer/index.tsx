@@ -11,10 +11,10 @@ type Props = {
    testId: TestId
    isEndQuestion: boolean
    answers: Answer[]
-   setScene: Dispatch<SetStateAction<number>>
+   setQuestion: Dispatch<SetStateAction<number>>
 }
 
-export const SelectAnswer = ({ testId, answers, setScene, isEndQuestion }: Props) => {
+export const SelectAnswer = ({ testId, answers, setQuestion, isEndQuestion }: Props) => {
    const navigate = useNavigate()
    const [selectedAnswerId, setSelectedAnswerId] = useState<AnswerId | null>(null)
    const { increaseScore, score, maxScore } = useTestContext()
@@ -40,7 +40,7 @@ export const SelectAnswer = ({ testId, answers, setScene, isEndQuestion }: Props
             return
          }
 
-         setScene((prevScene) => prevScene + 1)
+         setQuestion((prev) => prev + 1)
          setSelectedAnswerId(null)
          window.scrollTo({ top: 0 })
       }

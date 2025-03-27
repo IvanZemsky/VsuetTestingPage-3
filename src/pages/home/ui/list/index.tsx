@@ -1,15 +1,25 @@
 import { testsService } from "@/entities/test"
 import { TestsList } from "@/features/test"
-import { useQuery } from "@/shared/lib"
-import { useTestsFiltersContext } from "../../model/filters-context/context"
+import { Button, TextInput } from "@/shared/ui"
+import { SearchIcon } from "@/shared/ui/icons"
+import styles from "./styles.module.css"
+import { useRef, useState } from "react"
+import { useQuery } from "@tanstack/react-query"
 
 export const HomeTestsList = () => {
-   const { filters } = useTestsFiltersContext()
+   const [search, setSearch] = useState("")
+   const searchRef = useRef<HTMLInputElement>(null)
 
    const { data, isError, isLoading } = useQuery({
-      queryFn: () => testsService.fetchTests(filters),
-      dependency: filters,
+      queryFn: () => testsService.fetchTests({ search, page: 0, limit: 0 }),
+      queryKey: [search],
    })
+
+   const handleSearchBtnClick = () => {
+      if (searchRef.current) {
+         setSearch(searchRef.current.value)
+      }
+   }
 
    if (isLoading) {
       return <p>Загрузка...</p>
@@ -19,5 +29,13 @@ export const HomeTestsList = () => {
       return <p>Произошла ошибка</p>
    }
 
-   return <TestsList tests={data} />
+   return (
+      <div className={styles.testsWrap}>
+         <div className={styles.search}>
+            <TextInput placeholder="Поиск" ref={searchRef} />
+            <Button icon={<SearchIcon />} onClick={handleSearchBtnClick} />
+         </div>
+         <TestsList tests={data} />
+      </div>
+   )
 }
