@@ -11,7 +11,7 @@ const Result = () => {
 
    const fetchTestQuery = useQuery({
       queryFn: () => testsService.fetchTestById(testId!),
-      queryKey: [testId],
+      queryKey: ["resultTest", testId],
       enabled: !!testId,
    })
 

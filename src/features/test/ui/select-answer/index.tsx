@@ -11,14 +11,14 @@ type Props = {
    testId: TestId
    isEndQuestion: boolean
    answers: Answer[]
-   setQuestion: Dispatch<SetStateAction<number>>
+   setScene: Dispatch<SetStateAction<number>>
 }
 
-export const SelectAnswer = ({ testId, answers, setQuestion, isEndQuestion }: Props) => {
+export const SelectAnswer = ({ testId, answers, setScene, isEndQuestion }: Props) => {
    const navigate = useNavigate()
    const [selectedAnswerId, setSelectedAnswerId] = useState<AnswerId | null>(null)
    const { increaseScore, score, maxScore } = useTestContext()
-   const incrementPasses = useIncrementTestPasses(testId, isEndQuestion)
+   const incrementPasses = useIncrementTestPasses()
 
    const handleAnswerChange = (event: ChangeEvent<HTMLInputElement>) => {
       setSelectedAnswerId(event.target.value)
@@ -34,13 +34,13 @@ export const SelectAnswer = ({ testId, answers, setQuestion, isEndQuestion }: Pr
 
          if (isEndQuestion) {
             saveScoreToLS({ testId, score: score.current, maxScore: maxScore.current })
-
+            incrementPasses.mutate(testId)
             window.scrollTo({ top: 0 })
             navigate("result")
             return
          }
 
-         setQuestion((prev) => prev + 1)
+         setScene((prevScene) => prevScene + 1)
          setSelectedAnswerId(null)
          window.scrollTo({ top: 0 })
       }
@@ -61,7 +61,7 @@ export const SelectAnswer = ({ testId, answers, setQuestion, isEndQuestion }: Pr
          </div>
          <NextQuestionBtn
             onClick={handleNextQuestionClick}
-            disabled={!selectedAnswerId || (isEndQuestion && incrementPasses.isLoading)}
+            disabled={!selectedAnswerId || (isEndQuestion && incrementPasses.isPending)}
          />
       </form>
    )
