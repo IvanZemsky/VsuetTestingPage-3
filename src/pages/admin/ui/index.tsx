@@ -8,12 +8,12 @@ export const Admin = () => {
    const authQuery = useSessionQuery()
 
    useEffect(() => {
-      if (!authQuery.data) {
-         navigate("/admin-login")
+      if (!authQuery.isSuccess) {
+         navigate("/admin/sign-in")
       }
-   }, [authQuery.data, navigate])
+   }, [authQuery, navigate])
 
-   if (authQuery.isLoading) {
+   if (authQuery.isPending) {
       return <Loading />
    }
 

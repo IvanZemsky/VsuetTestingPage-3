@@ -1,20 +1,11 @@
-import { ApiClient } from "./client"
+import axios from "axios"
 
 export const API_URL = import.meta.env.VITE_API_URL
 
-if (!API_URL) {
-   throw new Error("API_URL is not defined")
-}
-
-const token = localStorage.getItem("token")
-
-export const API = new ApiClient({
-   baseUrl: API_URL,
-   interceptors: {
-      credentials: "include",
-      headers: {
-         "Content-Type": "application/json",
-         // Authorization: `Bearer ${token}`,
-      },
+export const API = axios.create({
+   baseURL: API_URL,
+   withCredentials: true,
+   headers: {
+      "Content-Type": "application/json",
    },
 })

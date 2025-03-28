@@ -19,10 +19,11 @@ export const AdminLogin = () => {
    })
 
    useEffect(() => {
-      if (signInMutation.data || authQuery.data) {
+      if (authQuery.isSuccess) {
          navigate("/admin")
+         return
       }
-   }, [signInMutation.data, authQuery.data, navigate])
+   }, [authQuery, navigate])
 
    if (authQuery.isLoading) {
       return <Loading />

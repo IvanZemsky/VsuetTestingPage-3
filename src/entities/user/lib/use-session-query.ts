@@ -6,7 +6,6 @@ export function useSessionQuery() {
       queryKey: ["session"],
       queryFn: () => userService.getSessionInfo(),
       retry: 0,
-      staleTime: 5 * 60 * 1000,
       refetchOnWindowFocus: false,
    })
 }

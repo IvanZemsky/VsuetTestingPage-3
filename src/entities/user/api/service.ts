@@ -6,19 +6,36 @@ const { SignIn, SignOut, Auth, GetSessionInfo } = API_ENDPOINTS
 
 export const userService = {
    async signIn(dto: SignInDto) {
-      const response = await API.post<SignInDto>(setPath(Auth, SignIn), {
-         body: JSON.stringify(dto),
-      })
-      return response
+      try {
+         const response = await API.post<SignInDto>(setPath(Auth, SignIn), dto)
+
+         console.log("userService.signIn: Response", response)
+         return response.data
+      } catch (error) {
+         console.error("userService.signIn: Error", error)
+         throw error // Re-throw the error to be caught by useMutation
+      }
    },
 
    async signOut() {
-      const response = await API.post(setPath(Auth, SignOut))
-      return response
+      try {
+         const response = await API.post(setPath(Auth, SignOut))
+         console.log("userService.signOut: Response", response)
+         return response.data
+      } catch (error) {
+         console.error("userService.signOut: Error", error)
+         throw error
+      }
    },
 
    async getSessionInfo() {
-      const response = await API.get<GetSessionInfoDto>(setPath(Auth, GetSessionInfo))
-      return response
+      try {
+         const response = await API.get<GetSessionInfoDto>(setPath(Auth, GetSessionInfo))
+         console.log("userService.getSessionInfo: Response", response)
+         return response.data
+      } catch (error) {
+         console.error("userService.getSessionInfo: Error", error)
+         throw error
+      }
    },
 }

@@ -1,17 +1,16 @@
 import { userService } from "@/entities/user"
+import { queryClient } from "@/shared/model"
 import { Button } from "@/shared/ui"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
 import { useNavigate } from "react-router"
 
 export const SignOutBtn = () => {
    const navigate = useNavigate()
-   const queryClient = useQueryClient()
-
    const signOutMutation = useMutation({
       mutationFn: userService.signOut,
       onSuccess: async () => {
-         queryClient.invalidateQueries({ queryKey: ["session"] })
-         navigate("/")
+         await queryClient.invalidateQueries({ queryKey: ["session"] })
+         navigate("/admin/sign-in")
       },
    })
 
@@ -20,7 +19,7 @@ export const SignOutBtn = () => {
    }
 
    return (
-      <Button onClick={handleClick} disabled={signOutMutation.isPending}>
+      <Button onClick={handleClick}>
          Выйти
       </Button>
    )
