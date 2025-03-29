@@ -1,3 +1,5 @@
+export { TestsSearchList } from "./ui/tests-search-list"
+export { useTestsQuery } from "./lib/use-tests-query"
 export { ResultCounter } from "./ui/result-counter"
 export { Question } from "./ui/question"
 export { TestCard } from "./ui/test-card"

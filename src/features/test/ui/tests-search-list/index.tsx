@@ -1,19 +1,22 @@
-import { testsService } from "@/entities/test"
 import { TestsList } from "@/features/test"
 import { Button, TextInput } from "@/shared/ui"
 import { SearchIcon } from "@/shared/ui/icons"
 import styles from "./styles.module.css"
 import { useRef, useState } from "react"
-import { useQuery } from "@tanstack/react-query"
+import { useTestsQuery } from "@/features/test"
 
-export const HomeTestsList = () => {
+type Props = {
+   /**
+    * Строка шаблона "before{id}after"
+    */
+   link: string
+}
+
+export const TestsSearchList = ({ link }: Props) => {
    const [search, setSearch] = useState("")
    const searchRef = useRef<HTMLInputElement>(null)
 
-   const { data, isError, isLoading } = useQuery({
-      queryFn: () => testsService.fetchTests({ search, page: 0, limit: 0 }),
-      queryKey: [search],
-   })
+   const { data, isError, isLoading } = useTestsQuery(search)
 
    const handleSearchBtnClick = () => {
       if (searchRef.current) {
@@ -35,7 +38,7 @@ export const HomeTestsList = () => {
             <TextInput placeholder="Поиск" ref={searchRef} />
             <Button icon={<SearchIcon />} onClick={handleSearchBtnClick} />
          </div>
-         <TestsList tests={data} />
+         <TestsList tests={data} link={link} />
       </div>
    )
 }

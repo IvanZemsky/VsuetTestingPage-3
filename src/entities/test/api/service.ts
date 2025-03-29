@@ -11,13 +11,13 @@ export const testsService = {
       const response = await API.get<GetTestDto[]>(Tests, {
          params: filters,
       })
-      const tests = response.data.map(testAdapters.test)
+      const tests = response.data.map(testAdapters.main)
       return tests
    },
 
    async fetchTestById(id: TestId): Promise<Test> {
       const response = await API.get<GetTestDto>(setPath(Tests, id))
-      const test = testAdapters.test(response.data)
+      const test = testAdapters.main(response.data)
       return test
    },
 

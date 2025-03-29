@@ -1,4 +1,5 @@
 import { useSessionQuery } from "@/entities/user"
+import { TestsSearchList } from "@/features/test"
 import { Loading } from "@/shared/ui"
 import { useEffect } from "react"
 import { useNavigate } from "react-router"
@@ -17,5 +18,7 @@ export const Admin = () => {
       return <Loading />
    }
 
-   return <div>{JSON.stringify(authQuery.data)}</div>
+   return (
+      <TestsSearchList link={"/admin/tests/{id}/edit"} />
+   )
 }

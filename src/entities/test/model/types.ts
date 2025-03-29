@@ -1,8 +1,9 @@
 export type AnswerId = string
 export type QuestionId = string
 export type TestId = string
+
 export type SpecializationTag = {
-   id: string
+   id: number
    name: string
    symbol: string
 }

@@ -1,12 +1,12 @@
 import styles from "./styles.module.css"
 import { Intro } from "./intro"
-import { HomeTestsList } from "./list"
+import { TestsSearchList } from "@/features/test"
 
 export const Home = () => {
    return (
       <section className={styles.content}>
          <Intro />
-         <HomeTestsList />
+         <TestsSearchList link="/tests/{id}" />
       </section>
    )
 }

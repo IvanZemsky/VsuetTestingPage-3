@@ -1,0 +1,17 @@
+.input {
+   display: block;
+   flex-shrink: 1;
+   padding: 10px 20px;
+   border-radius: 19px;
+   background-color: var(--primary-contrast);
+   border: 2px solid var(--primary-main);
+}
+
+.input::placeholder {
+   color: var(--primary-contrast-text);
+   transition: color 0.15s linear;
+}
+
+.input:focus::placeholder {
+   color: rgba(0, 0, 0, 0);
+}

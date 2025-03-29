@@ -1,4 +1,4 @@
-import { Home, Test, Result, Admin, AdminLogin } from "@/pages"
+import { Home, Test, Result, Admin, AdminLogin, EditTest } from "@/pages"
 import { MainLayout } from "./layouts/main-layout"
 import { createBrowserRouter } from "react-router"
 import { AdminLayout } from "./layouts/admin-layout"
@@ -23,6 +23,10 @@ export const router = createBrowserRouter([
       ],
    },
    {
+      path: "/admin/sign-in",
+      element: <AdminLogin />,
+   },
+   {
       path: "/admin",
       element: <AdminLayout />,
       children: [
@@ -31,8 +35,8 @@ export const router = createBrowserRouter([
             element: <Admin />,
          },
          {
-            path: "sign-in",
-            element: <AdminLogin />,
+            path: "tests/:testId/edit",
+            element: <EditTest />,
          },
       ],
    },

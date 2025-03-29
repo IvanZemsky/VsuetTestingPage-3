@@ -1,3 +1,4 @@
+export { Textarea } from "./textarea"
 export { CheckGroup } from "./check-group"
 export { Check } from "./check"
 export { Dropdown } from "./dropdown"

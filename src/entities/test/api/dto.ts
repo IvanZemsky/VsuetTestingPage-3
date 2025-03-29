@@ -1,7 +1,7 @@
 import { Answer } from "../model/types"
 
 export type GetSpecializationTagDto = {
-   _id: string
+   id: number
    name: string
    symbol: string
 }

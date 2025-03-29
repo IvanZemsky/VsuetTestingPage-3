@@ -1,0 +1,46 @@
+.content{
+   display: flex;
+   flex-direction: column;
+   max-width: 1096px;
+   margin: 0 auto;
+   gap: 20px;
+}
+
+.content h1{
+   font-weight: 600;
+   font-size: 20px;
+}
+
+.content input, textarea {
+   width: 100%;
+   font-size: 18px;
+}
+
+.content button{
+   font-size: 18px;
+   align-self: flex-start;
+}
+
+.content textarea{
+   height: 200px;
+}
+
+.tags{
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   gap: 15px;
+   width: 100%;
+}
+
+.tag{
+   display: flex;
+   gap: 10px;
+   flex-grow: 1;
+}
+
+.tag input:first-child{
+   justify-content: center;
+   width: 50px;
+   padding: 0;
+   text-align: center;
+}

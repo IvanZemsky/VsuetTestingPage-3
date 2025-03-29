@@ -5,12 +5,13 @@ import { Link } from "react-router"
 
 type Props = {
    data: Test
+   link: string
 }
-export const TestCard = ({ data }: Props) => {
+export const TestCard = ({ data, link }: Props) => {
    const { name, description, img, tags, specializationCode, passes } = data
 
    return (
-      <Link to={`/tests/${data.id}`} className={styles.content}>
+      <Link to={link} className={styles.content}>
          <div className={styles.imgWrap}>
             <img src={img} alt={`Cover of test "${name}"`} />
          </div>
