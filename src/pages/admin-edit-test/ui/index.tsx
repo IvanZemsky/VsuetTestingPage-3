@@ -1,69 +1,66 @@
-import { Button, Loading, Textarea, TextInput } from "@/shared/ui"
-import styles from "./styles.module.css"
+import { testsService, SpecializationTag, Question } from "@/entities/test"
+import { Loading, TextInput, Textarea } from "@/shared/ui"
 import { useQuery } from "@tanstack/react-query"
-import { SpecializationTag, testsService } from "@/entities/test"
+import { useRef, useMemo, useEffect } from "react"
 import { useParams } from "react-router"
-import { useEffect, useState } from "react"
+import { QuestionsInput } from "./questions-input"
+import { TagsInput } from "./tags-input"
+import styles from "./styles.module.css"
+import { useEditTestForm } from "../lib/use-edit-test-form"
 
 export const EditTest = () => {
    const { testId } = useParams<{ testId: string }>()
 
-   const { data, isPending, isError } = useQuery({
-      queryFn: () => testsService.fetchTestById(testId!),
-      queryKey: [testId],
-      enabled: !!testId,
-   })
+   const {
+      fetchTestQuery,
+      fetchQuestionsQuery,
+      tagsRef,
+      questionsRef,
+      initialTags,
+      initialQuestions,
+      handleTagsChange,
+      handleQuestionsChange,
+   } = useEditTestForm(testId)
 
-   const [tags, setTags] = useState<SpecializationTag[]>([])
-
-   useEffect(() => {
-      if (data) {
-         setTags(data.tags || [])
-      }
-   }, [data])
+   const testData = fetchTestQuery.data
 
    if (!testId) {
       return <p>Произошла ошибка: нет id теста</p>
    }
 
-   if (isError) {
+   if (fetchTestQuery.isError) {
       return <p>Произошла ошибка</p>
    }
 
-   if (!data && !isPending) {
+   if (!testData && !fetchTestQuery.isPending) {
       return <p>Тест не найден</p>
    }
 
-   if (isPending) {
+   if (fetchTestQuery.isPending) {
       return <Loading />
    }
 
-   const handleAddTagClick = () => {
-      const id = Math.max(...tags.map((tag) => tag.id)) + 1
-      console.log(id)
-      setTags((prev) => [...prev, { id, name: "", symbol: "" }])
-      console.log(tags)
+   if (!testData) {
+      return <p>Тест не найден</p>
    }
 
    return (
-      <div className={styles.content}>
-         <h1>Редактирование теста "{data.name}"</h1>
-         <TextInput placeholder="Название теста" defaultValue={data.name} />
-         <Textarea placeholder="Описание теста" defaultValue={data.description} />
-         <TextInput placeholder="Ссылка на картинку" defaultValue={data.img} />
+      <form className={styles.content}>
+         <h1>Редактирование теста "{testData.name}"</h1>
+         <TextInput placeholder="Название теста" defaultValue={testData.name} />
+         <Textarea placeholder="Описание теста" defaultValue={testData.description} />
+         <TextInput placeholder="Ссылка на картинку" defaultValue={testData.img} />
          <TextInput
             placeholder="Код специализации"
-            defaultValue={data.specializationCode}
+            defaultValue={testData.specializationCode}
          />
-         <Button onClick={handleAddTagClick}>Добавить тег</Button>
-         <div className={styles.tags}>
-            {tags.map((tag) => (
-               <div className={styles.tag} key={tag.id}>
-                  <TextInput defaultValue={tag.symbol} max={1} maxLength={1} />
-                  <TextInput defaultValue={tag.name} placeholder="Название тега"/>
-               </div>
-            ))}
-         </div>
-      </div>
+         {testData && <TagsInput initialTags={initialTags} onChange={handleTagsChange} />}
+         {fetchQuestionsQuery.data && (
+            <QuestionsInput
+               initialQuestions={initialQuestions}
+               onChange={handleQuestionsChange}
+            />
+         )}
+      </form>
    )
 }

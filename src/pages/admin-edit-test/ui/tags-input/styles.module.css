@@ -1,0 +1,33 @@
+.tags{
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   gap: 15px;
+   width: 100%;
+}
+
+.tag{
+   display: flex;
+   gap: 10px;
+   flex-grow: 1;
+}
+
+.title{
+   display: flex;
+   align-items: center;
+   gap: 15px;
+}
+
+button.removeTagBtn{
+   flex-shrink: 0;
+   width: 50px;
+   height: 50px;
+   padding: 12px;
+   justify-content: center;
+}
+
+input.symbolInput{
+   justify-content: center;
+   width: 50px;
+   padding: 0;
+   text-align: center;
+}
