@@ -25,7 +25,7 @@ button.removeTagBtn{
    justify-content: center;
 }
 
-input.symbolInput{
+.tag input.symbolInput{
    justify-content: center;
    width: 50px;
    padding: 0;

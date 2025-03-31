@@ -2,7 +2,7 @@ import { TestsList } from "@/features/test"
 import { Button, TextInput } from "@/shared/ui"
 import { SearchIcon } from "@/shared/ui/icons"
 import styles from "./styles.module.css"
-import { useRef, useState } from "react"
+import { ReactNode, useRef, useState } from "react"
 import { useTestsQuery } from "@/features/test"
 
 type Props = {
@@ -10,9 +10,10 @@ type Props = {
     * Строка шаблона "before{id}after"
     */
    link: string
+   additionalElements?: ReactNode
 }
 
-export const TestsSearchList = ({ link }: Props) => {
+export const TestsSearchList = ({ link, additionalElements }: Props) => {
    const [search, setSearch] = useState("")
    const searchRef = useRef<HTMLInputElement>(null)
 
@@ -37,6 +38,7 @@ export const TestsSearchList = ({ link }: Props) => {
          <div className={styles.search}>
             <TextInput placeholder="Поиск" ref={searchRef} />
             <Button icon={<SearchIcon />} onClick={handleSearchBtnClick} />
+            {additionalElements}
          </div>
          <TestsList tests={data} link={link} />
       </div>

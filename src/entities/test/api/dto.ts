@@ -1,4 +1,4 @@
-import { Answer } from "../model/types"
+import { Answer, Question, Test } from "../model/types"
 
 export type GetSpecializationTagDto = {
    id: number
@@ -26,4 +26,18 @@ export type GetQuestionDto = {
 export type UpdateTestPassesDto = {
    testId: string
    passes: number
+}
+
+export type UpdateQuestionDto = Question & {
+   isNew?: boolean
+}
+
+export type UpdateTestDto = Omit<Test, "passes"> & {
+   questions: UpdateQuestionDto[]
+}
+
+export type CreateQuestionDto = Question
+
+export type CreateTestDto = Omit<Test, "id" | "passes"> & {
+   questions: CreateQuestionDto[]
 }

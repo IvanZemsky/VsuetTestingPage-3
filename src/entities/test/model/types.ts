@@ -25,7 +25,6 @@ export type Test = {
    name: string
    description: string
    img: string
-   maxResult: number
    specializationCode: string
    tags: SpecializationTag[]
    passes: number

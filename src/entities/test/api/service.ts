@@ -1,6 +1,6 @@
 import { API, API_ENDPOINTS } from "@/shared/api"
 import { testAdapters } from "./adapters"
-import { GetQuestionDto, GetTestDto, UpdateTestPassesDto } from "./dto"
+import { GetQuestionDto, GetTestDto, UpdateTestDto, UpdateTestPassesDto } from "./dto"
 import { Question, Test, TestId, TestsFilters, UpdateTestPasses } from "../model/types"
 import { setPath } from "@/shared/lib"
 
@@ -32,5 +32,10 @@ export const testsService = {
          setPath(Tests, testId, Passes),
       )
       return response.data
+   },
+
+   async updateTest(testId: TestId, dto: UpdateTestDto) {
+      const resposnse = await API.patch(setPath(Tests, testId), dto)
+      return resposnse.data
    },
 }

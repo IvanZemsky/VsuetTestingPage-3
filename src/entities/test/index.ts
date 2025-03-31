@@ -4,3 +4,9 @@ export { TestContextProvider } from "./model/test-context/provider"
 export { TEST } from "./constants/test"
 export { TEST_RESULTS } from "./constants/test-results"
 export * from "./model/types"
+export type {
+   UpdateTestDto,
+   UpdateQuestionDto,
+   CreateQuestionDto,
+   CreateTestDto,
+} from "./api/dto"

@@ -1,12 +1,8 @@
-import { testsService, SpecializationTag, Question } from "@/entities/test"
-import { Loading, TextInput, Textarea } from "@/shared/ui"
-import { useQuery } from "@tanstack/react-query"
-import { useRef, useMemo, useEffect } from "react"
+import { Button, Loading, } from "@/shared/ui"
 import { useParams } from "react-router"
-import { QuestionsInput } from "./questions-input"
-import { TagsInput } from "./tags-input"
 import styles from "./styles.module.css"
 import { useEditTestForm } from "../lib/use-edit-test-form"
+import { QuestionsInput, TagsInput, TestFormFields } from "@/features/test"
 
 export const EditTest = () => {
    const { testId } = useParams<{ testId: string }>()
@@ -14,12 +10,11 @@ export const EditTest = () => {
    const {
       fetchTestQuery,
       fetchQuestionsQuery,
-      tagsRef,
-      questionsRef,
       initialTags,
       initialQuestions,
       handleTagsChange,
       handleQuestionsChange,
+      handleSubmit,
    } = useEditTestForm(testId)
 
    const testData = fetchTestQuery.data
@@ -45,15 +40,9 @@ export const EditTest = () => {
    }
 
    return (
-      <form className={styles.content}>
+      <form className={styles.content} onSubmit={handleSubmit}>
          <h1>Редактирование теста "{testData.name}"</h1>
-         <TextInput placeholder="Название теста" defaultValue={testData.name} />
-         <Textarea placeholder="Описание теста" defaultValue={testData.description} />
-         <TextInput placeholder="Ссылка на картинку" defaultValue={testData.img} />
-         <TextInput
-            placeholder="Код специализации"
-            defaultValue={testData.specializationCode}
-         />
+         <TestFormFields testData={testData} />
          {testData && <TagsInput initialTags={initialTags} onChange={handleTagsChange} />}
          {fetchQuestionsQuery.data && (
             <QuestionsInput
@@ -61,6 +50,9 @@ export const EditTest = () => {
                onChange={handleQuestionsChange}
             />
          )}
+         <Button type="submit" className={styles.submitBtn}>
+            Сохранить
+         </Button>
       </form>
    )
 }

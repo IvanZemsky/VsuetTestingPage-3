@@ -1,16 +1,16 @@
 import { Button, TextInput } from "@/shared/ui"
 import { CrossIcon } from "@/shared/ui/icons"
 import styles from "./styles.module.css"
-import { Question } from "@/entities/test"
 import { ChangeEvent, useEffect, useState } from "react"
+import { UpdateQuestionDto } from "@/entities/test"
 
 type Props = {
-   initialQuestions: Question[]
-   onChange: (newQuestions: Question[]) => void
+   initialQuestions: UpdateQuestionDto[]
+   onChange: (newQuestions: UpdateQuestionDto[]) => void
 }
 
 export const QuestionsInput = ({ initialQuestions, onChange }: Props) => {
-   const [questions, setQuestions] = useState<Question[]>(initialQuestions)
+   const [questions, setQuestions] = useState<UpdateQuestionDto[]>(initialQuestions)
 
    useEffect(() => {
       onChange(questions)
@@ -18,7 +18,7 @@ export const QuestionsInput = ({ initialQuestions, onChange }: Props) => {
 
    const handleAddQuestionClick = () => {
       const id = String(Date.now())
-      setQuestions((prev) => [...prev, { id, title: "", answers: [] }])
+      setQuestions((prev) => [...prev, { id, title: "", answers: [], isNew: true }])
    }
 
    const handleRemoveQuestionClick = (questionId: string) => () => {
@@ -102,10 +102,7 @@ export const QuestionsInput = ({ initialQuestions, onChange }: Props) => {
       }
    return (
       <>
-         <h2 className={styles.title}>
-            Вопросы
-            <Button onClick={handleAddQuestionClick}>Добавить</Button>
-         </h2>
+         <h2 className={styles.title}>Вопросы</h2>
          <div className={styles.questions}>
             {questions?.map((question) => (
                <div className={styles.question} key={question.id}>
@@ -152,6 +149,7 @@ export const QuestionsInput = ({ initialQuestions, onChange }: Props) => {
                   </div>
                </div>
             ))}
+            <Button onClick={handleAddQuestionClick}>Добавить вопрос</Button>
          </div>
       </>
    )
