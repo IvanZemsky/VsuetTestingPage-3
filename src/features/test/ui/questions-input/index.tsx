@@ -104,8 +104,9 @@ export const QuestionsInput = ({ initialQuestions, onChange }: Props) => {
       <>
          <h2 className={styles.title}>Вопросы</h2>
          <div className={styles.questions}>
-            {questions?.map((question) => (
+            {questions?.map((question, i) => (
                <div className={styles.question} key={question.id}>
+                  <h3>Вопрос №{i + 1}</h3>
                   <div className={styles.questionInput}>
                      <TextInput
                         defaultValue={question.title}

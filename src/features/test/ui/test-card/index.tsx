@@ -30,7 +30,7 @@ export const TestCard = ({ data, link }: Props) => {
 
                <div className={styles.tags}>
                   {tags.map((tag) => (
-                     <p className={styles.tag} key={tag.name}>
+                     <p className={styles.tag} key={tag.id}>
                         {tag.symbol}
                      </p>
                   ))}

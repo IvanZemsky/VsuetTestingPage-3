@@ -15,7 +15,7 @@ export const TagsInput = ({ initialTags, onChange }: Props) => {
    const MAX_TAGS = 3
 
    const handleAddTagClick = () => {
-      const id = Math.max(...tags.map((tag) => tag.id)) + 1
+      const id = tags.length ? Math.max(...tags.map((tag) => tag.id)) + 1 : 1
       setTags((prev) => [...prev, { id, name: "", symbol: "" }])
    }
 
@@ -43,6 +43,8 @@ export const TagsInput = ({ initialTags, onChange }: Props) => {
    useEffect(() => {
       onChange(tags)
    }, [tags])
+
+   console.log(tags)
 
    return (
       <>

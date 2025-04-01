@@ -6,10 +6,14 @@ import {
    UpdateTestDto,
 } from "@/entities/test"
 import { UpdateQuestionDto } from "@/entities/test"
+import { queryClient } from "@/shared/model"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { useRef, useMemo, useEffect, FormEvent } from "react"
+import { useNavigate } from "react-router"
 
 export function useEditTestForm(testId?: string) {
+   const navigate = useNavigate()
+
    const fetchTestQuery = useQuery({
       queryFn: () => testsService.fetchTestById(testId!),
       queryKey: [testId],
@@ -31,6 +35,14 @@ export function useEditTestForm(testId?: string) {
          const { testId, dto } = payload
          return testsService.updateTest(testId, dto)
       },
+   })
+
+   const deleteTestMutation = useMutation({
+      mutationFn: testsService.deleteTest,
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: ["tests"] })
+         navigate("/admin")
+      }
    })
 
    const tagsRef = useRef<SpecializationTag[]>([])
@@ -95,6 +107,7 @@ export function useEditTestForm(testId?: string) {
       handleQuestionsChange,
       fetchTestQuery,
       fetchQuestionsQuery,
+      deleteTestMutation,
       handleSubmit,
    }
 }

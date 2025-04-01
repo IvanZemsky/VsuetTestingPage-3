@@ -1,10 +1,15 @@
-import { SpecializationTag, Question, CreateTestDto } from "@/entities/test"
+import { SpecializationTag, Question, CreateTestDto, testsService } from "@/entities/test"
 import { UpdateQuestionDto } from "@/entities/test"
+import { useMutation } from "@tanstack/react-query"
 import { useRef, FormEvent } from "react"
 
 export function useCreateTestForm() {
    const tagsRef = useRef<SpecializationTag[]>([])
    const questionsRef = useRef<Question[]>([])
+
+   const createTestMutation = useMutation({
+      mutationFn: testsService.createTest
+   })
 
    const handleTagsChange = (newTags: SpecializationTag[]) => {
       tagsRef.current = newTags
@@ -34,6 +39,8 @@ export function useCreateTestForm() {
          tags: tagsRef.current,
          questions: questionsRef.current,
       }
+
+      createTestMutation.mutate(dto)
    }
 
    return {
