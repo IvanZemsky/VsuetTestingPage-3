@@ -3,6 +3,7 @@ import { queryClient } from "@/shared/model"
 import { Button } from "@/shared/ui"
 import { useMutation } from "@tanstack/react-query"
 import { useNavigate } from "react-router"
+import styles from "./styles.module.css"
 
 export const SignOutBtn = () => {
    const navigate = useNavigate()
@@ -19,7 +20,7 @@ export const SignOutBtn = () => {
    }
 
    return (
-      <Button onClick={handleClick}>
+      <Button onClick={handleClick} className={styles.btn}>
          Выйти
       </Button>
    )

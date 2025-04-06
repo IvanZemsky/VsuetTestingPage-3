@@ -31,3 +31,8 @@ button.removeTagBtn{
    padding: 0;
    text-align: center;
 }
+
+:global(.dark) .tag input {
+   color: var(--primary-contrast-test);
+   background-color: var(--secondary-main);
+}

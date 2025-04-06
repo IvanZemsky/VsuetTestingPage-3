@@ -13,12 +13,12 @@
    border: 1px solid var(--secondary-main);
 }
 
-.question h3{
+.question h3 {
    font-weight: 600;
    font-size: 18px;
 }
 
-.answerScoreInput{
+.answerScoreInput {
    max-width: 50px;
    padding: 10px;
    text-align: center;
@@ -50,4 +50,11 @@
    padding: 15px;
    border-radius: 10px;
    border: 1px solid var(--secondary-main);
+}
+
+:global(.dark) .questionInput input,
+:global(.dark) .answerInput,
+:global(.dark) .answerScoreInput {
+   color: var(--primary-contrast-test);
+   background-color: var(--secondary-main);
 }

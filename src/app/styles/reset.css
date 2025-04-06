@@ -7,10 +7,25 @@
 
 body {
    font-size: 21px;
-   font-family: "Montserrat";
+   color: var(--primary-contrast-text);
    font-weight: 400;
+   font-family: Montserrat;
    font-style: normal;
    overflow-y: scroll;
+}
+
+.app {
+   display: grid;
+   grid-template-rows: auto 1fr;
+   grid-template-columns: 100%;
+   min-height: 100vh;
+   color: var(--text);
+   background-color: var(--primary-contrast);
+}
+
+.app.dark {
+   color: var(--primary-contrast);
+   background-color: #0d0d0d;
 }
 
 ul,

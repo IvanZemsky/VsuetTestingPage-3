@@ -3,6 +3,7 @@ import { TestsSearchList } from "@/features/test"
 import { Loading } from "@/shared/ui"
 import { useEffect } from "react"
 import { Link, useNavigate } from "react-router"
+import styles from "./styles.module.css"
 
 export const Admin = () => {
    const navigate = useNavigate()
@@ -19,9 +20,15 @@ export const Admin = () => {
    }
 
    return (
-      <TestsSearchList
-         link={"/admin/tests/{id}/edit"}
-         additionalElements={<Link to={"/admin/tests/new"}>Создать</Link>}
-      />
+      authQuery.isSuccess && (
+         <TestsSearchList
+            link={"/admin/tests/{id}/edit"}
+            additionalElements={
+               <Link to={"/admin/tests/new"} className={styles.link}>
+                  Создать
+               </Link>
+            }
+         />
+      )
    )
 }

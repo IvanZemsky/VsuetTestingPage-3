@@ -1,50 +1,12 @@
-import { useSessionQuery, userService } from "@/entities/user"
 import { Button, Loading, TextInput } from "@/shared/ui"
-import { FormEvent, useEffect } from "react"
-import { useNavigate } from "react-router"
 import styles from "./styles.module.css"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useAdminLoginForm } from "../lin/use-admin-login-form"
 
 export const AdminLogin = () => {
-   const navigate = useNavigate()
-   const authQuery = useSessionQuery()
-   const queryClient = useQueryClient()
-
-   const signInMutation = useMutation({
-      mutationFn: userService.signIn,
-      onSuccess: () => {
-         queryClient.invalidateQueries({ queryKey: ["session"] })
-         navigate("/admin")
-      },
-   })
-
-   useEffect(() => {
-      if (authQuery.isSuccess) {
-         navigate("/admin")
-         return
-      }
-   }, [authQuery, navigate])
+   const { authQuery, handleSubmit, signInMutation } = useAdminLoginForm()
 
    if (authQuery.isLoading) {
       return <Loading />
-   }
-
-   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-      event.preventDefault()
-
-      const form = event.target as HTMLFormElement
-      const login = (form.elements.namedItem("login") as HTMLInputElement)?.value
-      const password = (form.elements.namedItem("password") as HTMLInputElement)?.value
-
-      console.log(login, password)
-      if (login && password) {
-         signInMutation.mutate({
-            login,
-            password,
-         })
-      } else {
-         console.error("Login or password is missing")
-      }
    }
 
    return (

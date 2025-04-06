@@ -111,7 +111,6 @@ export const QuestionsInput = ({ initialQuestions, onChange }: Props) => {
                      <TextInput
                         defaultValue={question.title}
                         placeholder="Текст вопроса"
-                        className={styles.questionInput}
                         onChange={handleQuestionTitleChange(question.id)}
                      />
                      <Button

@@ -11,7 +11,7 @@
    font-size: 24px;
 }
 
-.content h2{
+.content h2 {
    font-weight: 600;
    font-size: 20px;
 }
@@ -29,4 +29,10 @@ textarea {
 
 .content textarea {
    height: 200px;
+}
+
+:global(.dark) .content input,
+:global(.dark) .content textarea {
+   color: var(--primary-contrast-test);
+   background-color: var(--secondary-main);
 }
