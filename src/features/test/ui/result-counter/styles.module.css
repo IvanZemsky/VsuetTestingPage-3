@@ -15,6 +15,10 @@
    text-align: right;
 }
 
+:global(.dark) .result {
+   background-color: var(--secondary-main);
+}
+
 @media screen and (max-width: 515px) {
    .resultNumber {
       font-size: 50px;
