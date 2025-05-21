@@ -2,24 +2,6 @@ export type AnswerId = string
 export type QuestionId = string
 export type TestId = string
 
-export type SpecializationTag = {
-   id: number
-   name: string
-   symbol: string
-}
-
-export type Answer = {
-   id: AnswerId
-   text: string
-   score: number
-}
-
-export type Question = {
-   id: QuestionId
-   title: string
-   answers: Answer[]
-}
-
 export type Test = {
    id: TestId
    name: string
@@ -28,6 +10,26 @@ export type Test = {
    specializationCode: string
    tags: SpecializationTag[]
    passes: number
+}
+
+export type SpecializationTag = {
+   id: number
+   name: string
+   symbol: string
+}
+
+export type Question = {
+   id: QuestionId
+   testId: TestId
+   title: string
+   answers: Answer[]
+}
+
+export type Answer = {
+   id: AnswerId
+   text: string
+   score: number
+   count: number
 }
 
 export type TestsFilters = {
@@ -39,6 +41,6 @@ export type TestsFilters = {
 export type MaxPercentResult = 35 | 75 | 100
 
 export type UpdateTestPasses = {
-   testId: TestId
+   testId: string
    passes: number
 }

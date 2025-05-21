@@ -1,4 +1,4 @@
-import { Answer, Question, Test } from "../model/types"
+import { Answer, AnswerId, Question, QuestionId, Test, TestId } from "../model/types"
 
 export type GetSpecializationTagDto = {
    id: number
@@ -20,6 +20,7 @@ export type GetTestDto = {
 export type GetQuestionDto = {
    _id: string
    title: string
+   testId: string
    answers: Answer[]
 }
 
@@ -40,4 +41,10 @@ export type CreateQuestionDto = Question
 
 export type CreateTestDto = Omit<Test, "id" | "passes"> & {
    questions: CreateQuestionDto[]
+}
+
+export type UpdateQuestionAnswerCountDto = {
+   testId: TestId
+   questionId: QuestionId
+   answerId: AnswerId
 }

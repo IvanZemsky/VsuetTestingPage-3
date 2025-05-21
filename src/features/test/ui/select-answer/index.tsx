@@ -1,4 +1,4 @@
-import { Answer, AnswerId, TestId, useTestContext } from "@/entities/test"
+import { Answer, AnswerId, QuestionId, TestId, useTestContext } from "@/entities/test"
 import styles from "./styles.module.css"
 import NextQuestionBtn from "../next-question-btn"
 import { AnswerBtn } from "../answer-btn"
@@ -6,19 +6,28 @@ import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 import { useNavigate } from "react-router"
 import { useIncrementTestPasses } from "../../lib/use-increment-test-passes"
 import { saveScoreToLS } from "../../lib/save-score-to-ls"
+import { useIncrementAnswerCount } from "../../lib/use-icrement-answer-count"
 
 type Props = {
+   questionId: QuestionId
    testId: TestId
    isEndQuestion: boolean
    answers: Answer[]
    setScene: Dispatch<SetStateAction<number>>
 }
 
-export const SelectAnswer = ({ testId, answers, setScene, isEndQuestion }: Props) => {
+export const SelectAnswer = ({
+   testId,
+   answers,
+   setScene,
+   isEndQuestion,
+   questionId,
+}: Props) => {
    const navigate = useNavigate()
    const [selectedAnswerId, setSelectedAnswerId] = useState<AnswerId | null>(null)
    const { increaseScore, score, maxScore } = useTestContext()
    const incrementPasses = useIncrementTestPasses()
+   const incrementAnswerCount = useIncrementAnswerCount()
 
    const handleAnswerChange = (event: ChangeEvent<HTMLInputElement>) => {
       setSelectedAnswerId(event.target.value)
@@ -31,6 +40,7 @@ export const SelectAnswer = ({ testId, answers, setScene, isEndQuestion }: Props
          )!.score
 
          increaseScore(answerScore)
+         incrementAnswerCount.mutate({ testId, answerId: selectedAnswerId, questionId })
 
          if (isEndQuestion) {
             saveScoreToLS({ testId, score: score.current, maxScore: maxScore.current })

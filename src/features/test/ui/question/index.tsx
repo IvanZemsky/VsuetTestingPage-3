@@ -23,7 +23,7 @@ export const Question = ({ testId, questions }: Props) => {
    }, [])
 
    if (!currentQuestion) {
-        return <div>Error: Could not load the question.</div>;
+      return <div>Error: Could not load the question.</div>
    }
 
    return (
@@ -31,6 +31,7 @@ export const Question = ({ testId, questions }: Props) => {
          <h2 className={styles.questionTitle}>{currentQuestion.title}</h2>
 
          <SelectAnswer
+            questionId={currentQuestion.id}
             testId={testId}
             isEndQuestion={isEndQuestion}
             answers={currentQuestion.answers}

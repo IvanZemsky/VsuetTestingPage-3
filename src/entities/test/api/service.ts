@@ -4,13 +4,14 @@ import {
    CreateTestDto,
    GetQuestionDto,
    GetTestDto,
+   UpdateQuestionAnswerCountDto,
    UpdateTestDto,
    UpdateTestPassesDto,
 } from "./dto"
 import { Question, Test, TestId, TestsFilters, UpdateTestPasses } from "../model/types"
 import { setPath } from "@/shared/lib"
 
-const { Tests, Questions, Passes } = API_ENDPOINTS
+const { Tests, Questions, Passes, Answers } = API_ENDPOINTS
 
 export const testsService = {
    async fetchTests(filters: TestsFilters): Promise<Test[]> {
@@ -53,5 +54,12 @@ export const testsService = {
    async deleteTest(testId: TestId) {
       const resposnse = await API.delete(setPath(Tests, testId))
       return resposnse.data
+   },
+
+   async updateQuestionAnswerCount(dto: UpdateQuestionAnswerCountDto) {
+      const response = await API.patch(
+         setPath(Tests, dto.testId, Questions, dto.questionId, Answers, dto.answerId, "count"),
+      )
+      return response.data
    },
 }
