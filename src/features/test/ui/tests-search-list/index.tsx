@@ -11,9 +11,14 @@ type Props = {
     */
    link: string
    additionalElements?: ReactNode
+   cardType?: "admin" | "default"
 }
 
-export const TestsSearchList = ({ link, additionalElements }: Props) => {
+export const TestsSearchList = ({
+   link,
+   additionalElements,
+   cardType = "default",
+}: Props) => {
    const [search, setSearch] = useState("")
    const searchRef = useRef<HTMLInputElement>(null)
 
@@ -40,7 +45,7 @@ export const TestsSearchList = ({ link, additionalElements }: Props) => {
             <Button icon={<SearchIcon />} onClick={handleSearchBtnClick} />
             {additionalElements}
          </div>
-         <TestsList tests={data} link={link} />
+         <TestsList tests={data} link={link} cardType={cardType} />
       </div>
    )
 }

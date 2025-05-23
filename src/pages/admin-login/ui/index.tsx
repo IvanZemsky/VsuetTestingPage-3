@@ -1,6 +1,6 @@
 import { Button, Loading, TextInput } from "@/shared/ui"
 import styles from "./styles.module.css"
-import { useAdminLoginForm } from "../lin/use-admin-login-form"
+import { useAdminLoginForm } from "../lib/use-admin-login-form"
 
 export const AdminLogin = () => {
    const { authQuery, handleSubmit, signInMutation } = useAdminLoginForm()

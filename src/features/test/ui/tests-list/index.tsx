@@ -10,8 +10,9 @@ type Props = {
     * Строка шаблона "before/{id}/after"
     */
    link: string
+   cardType?: "admin" | "default"
 }
-export const TestsList = ({ tests, link, className }: Props) => {
+export const TestsList = ({ tests, link, cardType = "default", className }: Props) => {
    if (!tests.length) {
       return <p>Ничего не найдено</p>
    }
@@ -21,7 +22,7 @@ export const TestsList = ({ tests, link, className }: Props) => {
    return (
       <div className={clsx(styles.content, className)}>
          {tests.map((test) => (
-            <TestCard data={test} link={getLink(test.id)} key={test.id} />
+            <TestCard data={test} type={cardType} link={getLink(test.id)} key={test.id} />
          ))}
       </div>
    )

@@ -1,0 +1,8 @@
+.answer{
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   border-radius: 10px;
+   border: 1px solid var(--secondary-main);
+   padding: 15px;
+}

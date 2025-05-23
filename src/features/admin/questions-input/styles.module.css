@@ -11,6 +11,11 @@
    padding: 15px;
    border-radius: 10px;
    border: 1px solid var(--secondary-main);
+   background-color: var(--neutral-light);
+}
+
+:global(.dark) .question {
+   background-color: var(--secondary-dark);
 }
 
 .question h3 {

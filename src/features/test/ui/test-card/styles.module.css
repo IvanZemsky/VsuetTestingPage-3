@@ -1,6 +1,13 @@
+.wrap{
+   display: flex;
+   flex-direction: column;
+   gap: 6px;
+}
+
 .content {
    display: flex;
    flex-direction: column;
+   flex-grow: 1;
    background-color: var(--secondary-main);
    border-radius: 15px;
    color: var(--secondary-contrast);
@@ -8,6 +15,18 @@
    border: 1px solid var(--secondary-main);
    transition: box-shadow 0.15s linear;
    box-shadow: 0px 0px 0px 0px var(--secondary-super-light);
+}
+
+.statsLink{
+   color: var(--primary-main);
+}
+
+.statsLink:hover{
+   text-decoration: underline;
+}
+
+.wrap.default .statsLink{
+   display: none;
 }
 
 .content:hover {
@@ -95,6 +114,7 @@
 
 .tag {
    flex-grow: 1;
+   flex-shrink: 1;
    padding: 8px;
    background-color: var(--secondary-contrast);
    font-size: 30px;

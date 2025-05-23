@@ -23,6 +23,7 @@ export const Admin = () => {
       authQuery.isSuccess && (
          <TestsSearchList
             link={"/admin/tests/{id}/edit"}
+            cardType="admin"
             additionalElements={
                <Link to={"/admin/tests/new"} className={styles.link}>
                   Создать

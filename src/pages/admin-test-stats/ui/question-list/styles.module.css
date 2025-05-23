@@ -1,0 +1,24 @@
+.list{
+   display: flex;
+   flex-direction: column;
+   gap: 25px;
+}
+
+.question{
+   border-radius : 10px;
+   border: 1px solid var(--secondary-main);
+   padding: 15px;
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+}
+
+.title{
+   font-weight: 600;
+}
+
+.answers{
+   display: flex;
+   flex-direction: column;
+   gap: 15px;
+}

@@ -38,8 +38,8 @@ export const Question = ({ testId, questions }: Props) => {
             setScene={setQuestionId}
          />
          <ProgressLine
-            questionNumber={questions.indexOf(currentQuestion) + 1}
-            questionAmount={questions.length}
+            actual={questions.indexOf(currentQuestion) + 1}
+            total={questions.length}
          />
       </section>
    )

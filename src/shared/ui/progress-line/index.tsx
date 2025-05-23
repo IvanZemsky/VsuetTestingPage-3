@@ -1,22 +1,26 @@
 import styles from "./styles.module.css"
 
 type Props = {
-   questionNumber: number
-   questionAmount: number
+   actual: number
+   total: number
 }
 
-export const ProgressLine = ({ questionNumber, questionAmount }: Props) => {
+export const ProgressLine = ({ actual, total }: Props) => {
+   const percent = (actual / total) * 100
+
+   const width = actual === 0 && total === 0 ? 0 : percent
+
    return (
       <div className={styles.progressWrap}>
          <label className={styles.progressInfo} htmlFor="test-progress">
-            <span>{questionNumber}</span>
+            <span>{actual}</span>
             <span>/</span>
-            <span>{questionAmount} </span>
+            <span>{total} </span>
          </label>
          <div
             className={styles.progressLine}
             style={{
-               width: `${(questionNumber / questionAmount) * 100}%`,
+               width: `${width}%`,
             }}
          ></div>
       </div>

@@ -2,9 +2,10 @@ import { Button, TextInput } from "@/shared/ui"
 import { CrossIcon } from "@/shared/ui/icons"
 import styles from "./styles.module.css"
 import { ChangeEvent, useEffect, useState } from "react"
-import { UpdateQuestionDto } from "@/entities/test"
+import { TestId, UpdateQuestionDto } from "@/entities/test"
 
 type Props = {
+   testId: TestId
    initialQuestions: UpdateQuestionDto[]
    onChange: (newQuestions: UpdateQuestionDto[]) => void
 }
@@ -18,7 +19,7 @@ export const QuestionsInput = ({ initialQuestions, onChange }: Props) => {
 
    const handleAddQuestionClick = () => {
       const id = String(Date.now())
-      setQuestions((prev) => [...prev, { id, title: "", answers: [], isNew: true }])
+      setQuestions((prev) => [...prev, { id, title: "", testId: "", answers: [], isNew: true }])
    }
 
    const handleRemoveQuestionClick = (questionId: string) => () => {
@@ -46,7 +47,7 @@ export const QuestionsInput = ({ initialQuestions, onChange }: Props) => {
             if (question.id === questionId) {
                return {
                   ...question,
-                  answers: [...question.answers, { id, text: "", score: 0 }],
+                  answers: [...question.answers, { id, text: "", score: 0, count: 0 }],
                }
             }
             return question
