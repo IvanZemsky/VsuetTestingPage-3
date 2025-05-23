@@ -1,0 +1,44 @@
+.content > button.deleteBtn{
+   margin-top: 20px;
+}
+
+.content button.deleteBtn,
+:global(.dark) .content button.deleteBtn {
+   background-color: red;
+   border-color: white;
+   color: white;
+}
+
+.content button.deleteBtn:hover,
+:global(.dark) .content button.deleteBtn:hover {
+   background-color: rgb(218, 0, 0);
+}
+
+.modal{
+   position: fixed;
+   top: 0;
+   left: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 100vw;
+   height: 100vh;
+   background-color: rgba(0,0,0,0.5);
+   z-index: 999;
+}
+
+.modalContent{
+   padding: 20px;
+   background-color: white;
+   border-radius: 20px;
+}
+
+.modalTitle{
+   font-weight: 600;
+   margin-bottom: 20px;
+}
+
+.modalButtons{
+   display: flex;
+   gap: 20px;
+}

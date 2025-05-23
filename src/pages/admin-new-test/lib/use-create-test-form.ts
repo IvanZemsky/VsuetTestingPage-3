@@ -1,14 +1,23 @@
 import { SpecializationTag, Question, CreateTestDto, testsService } from "@/entities/test"
 import { UpdateQuestionDto } from "@/entities/test"
+import { queryClient } from "@/shared/model"
 import { useMutation } from "@tanstack/react-query"
 import { useRef, FormEvent } from "react"
+import { useNavigate } from "react-router"
 
 export function useCreateTestForm() {
+   const navigate = useNavigate()
+
    const tagsRef = useRef<SpecializationTag[]>([])
    const questionsRef = useRef<Question[]>([])
 
    const createTestMutation = useMutation({
-      mutationFn: testsService.createTest
+      mutationFn: testsService.createTest,
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: ["tests"] })
+         queryClient.invalidateQueries({ queryKey: ["questions"] })
+         navigate("/admin")
+      },
    })
 
    const handleTagsChange = (newTags: SpecializationTag[]) => {

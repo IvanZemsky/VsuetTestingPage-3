@@ -10,7 +10,7 @@ const Test = () => {
 
    const { data, isLoading, isError } = useQuery({
       queryFn: () => testsService.fetchQuestionByTestId(testId!),
-      queryKey: [testId],
+      queryKey: ["questions", testId],
       enabled: !!testId,
    })
 

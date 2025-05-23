@@ -3,6 +3,7 @@ import { useParams } from "react-router"
 import styles from "./styles.module.css"
 import { useEditTestForm } from "../lib/use-edit-test-form"
 import { QuestionsInput, TagsInput, TestFormFields } from "@/features/test"
+import { RemoveTestBlock } from "./remove-test-block"
 
 export const EditTest = () => {
    const { testId } = useParams<{ testId: string }>()
@@ -14,7 +15,6 @@ export const EditTest = () => {
       initialQuestions,
       handleTagsChange,
       handleQuestionsChange,
-      deleteTestMutation,
       handleSubmit,
    } = useEditTestForm(testId)
 
@@ -40,8 +40,6 @@ export const EditTest = () => {
       return <p>Тест не найден</p>
    }
 
-   const handleDeleteClick = () => deleteTestMutation.mutate(testId)
-
    return (
       <form className={styles.content} onSubmit={handleSubmit}>
          <h1>Редактирование теста "{testData.name}"</h1>
@@ -57,7 +55,7 @@ export const EditTest = () => {
          <Button type="submit" className={styles.submitBtn}>
             Сохранить
          </Button>
-         <Button onClick={handleDeleteClick}>Удалить тест</Button>
+         <RemoveTestBlock testId={testId} />
       </form>
    )
 }

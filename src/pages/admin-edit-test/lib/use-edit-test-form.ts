@@ -16,7 +16,7 @@ export function useEditTestForm(testId?: string) {
 
    const fetchTestQuery = useQuery({
       queryFn: () => testsService.fetchTestById(testId!),
-      queryKey: [testId],
+      queryKey: ["tests", testId],
       enabled: !!testId,
       refetchOnWindowFocus: false,
    })
@@ -35,12 +35,9 @@ export function useEditTestForm(testId?: string) {
          const { testId, dto } = payload
          return testsService.updateTest(testId, dto)
       },
-   })
-
-   const deleteTestMutation = useMutation({
-      mutationFn: testsService.deleteTest,
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: ["tests"] })
+         queryClient.invalidateQueries({ queryKey: ["questions"] })
          navigate("/admin")
       }
    })
@@ -107,7 +104,6 @@ export function useEditTestForm(testId?: string) {
       handleQuestionsChange,
       fetchTestQuery,
       fetchQuestionsQuery,
-      deleteTestMutation,
       handleSubmit,
    }
 }

@@ -22,10 +22,19 @@ button.themeBtn {
    padding: 0;
 }
 
-
 .content{
    display: flex;
    justify-content: space-between;
    align-items: center;
    gap: 30px;
+}
+
+.links{
+   display: flex;
+   align-items: center;
+   gap: 16px;
+}
+
+.links a:first-child{
+   color: var(--primary-contrast);
 }
