@@ -21,6 +21,10 @@
    color: var(--primary-main);
 }
 
+:global(.dark) .statsLink{
+   color: var(--primary-contrast);
+}
+
 .statsLink:hover{
    text-decoration: underline;
 }
