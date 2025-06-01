@@ -1,5 +1,5 @@
 import { useSessionQuery } from "@/entities/user"
-import { TestsSearchList } from "@/features/test"
+import { TestsSearchList } from "@/features/test/ui/tests-search-list"
 import { Loading } from "@/shared/ui"
 import { useEffect } from "react"
 import { Link, useNavigate } from "react-router"

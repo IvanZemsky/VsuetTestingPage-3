@@ -17,6 +17,7 @@ export const AdminLogin = () => {
    return (
       <div className={clsx(styles.content, theme)}>
          <form className={styles.form} onSubmit={handleSubmit}>
+            <h3 className={styles.title}>Авторизация</h3>
             <TextInput placeholder="Логин" name="login" id="login" />
             <TextInput
                placeholder="Пароль"

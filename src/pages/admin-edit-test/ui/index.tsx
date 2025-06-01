@@ -47,7 +47,6 @@ export const EditTest = () => {
          {testData && <TagsInput initialTags={initialTags} onChange={handleTagsChange} />}
          {fetchQuestionsQuery.data && (
             <QuestionsInput
-               testId={testId}
                initialQuestions={initialQuestions}
                onChange={handleQuestionsChange}
             />

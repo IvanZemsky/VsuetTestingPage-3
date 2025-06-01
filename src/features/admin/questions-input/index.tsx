@@ -2,10 +2,9 @@ import { Button, TextInput } from "@/shared/ui"
 import { CrossIcon } from "@/shared/ui/icons"
 import styles from "./styles.module.css"
 import { ChangeEvent, useEffect, useState } from "react"
-import { TestId, UpdateQuestionDto } from "@/entities/test"
+import { UpdateQuestionDto } from "@/entities/test"
 
 type Props = {
-   testId: TestId
    initialQuestions: UpdateQuestionDto[]
    onChange: (newQuestions: UpdateQuestionDto[]) => void
 }
